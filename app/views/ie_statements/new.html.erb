@@ -1,0 +1,44 @@
+<% if @ie_statement.errors.full_messages.any? %>
+  <% @ie_statement.errors.full_messages.each do |error_message| %>
+    <% if @ie_statement.errors.full_messages.first == error_message %>
+      <div class ='error_explanation'> <%= error_message %></div>
+    <% end %>
+  <% end %>
+<% end %>
+<div class="col-md-7 col-lg-8">
+  <h4 class="mb-3">Income and Expenditure Statement</h4>
+  <%= form_with model: @ie_statement, class: 'card p-2' do |form| %>
+    <div class="row g-3">
+      <div class="col-sm-12">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control"  %>
+      </div>
+      <div class="col-sm-12">
+        <%= form.label :description, 'Description', class: "form-label" %>
+        <%= form.text_area :description, class: "form-control"  %>
+      </div>
+      <div id='incomes-container row g-3'>
+        <h5 class="mb-3">Add Income</h5>
+        <%= form.fields_for :incomes do |income| %>
+          <%= render 'income_fields', :f => income %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association 'Add New Income', form, :incomes %>
+        </div>
+      </div>
+
+      <div id='expenditure-container row g-3'>
+        <h5 class="mb-3">Add Expenditure</h5>
+        <%= form.fields_for :expenditures do |expenditure| %>
+          <%= render 'expenditure_fields', :f => expenditure %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association 'Add New Expenditure', form, :incomes %>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <%= form.submit :save, class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

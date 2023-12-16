@@ -1,0 +1,36 @@
+
+<div class="py-5 text-center">
+  <h2>Income & Expenditure statements</h2>
+  <p class="lead"></p>
+</div>
+
+<%= link_to 'Add new I&E statement', new_ie_statement_path, class: 'btn btn-primary' %>
+
+<% if @ie_statements.blank? %>
+  <p>No I&E statements found</p>
+<% else %>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Disposable Income</th>
+    <th scope="col">Ratio</th>
+    <th scope="col">I & E Rating</th>
+    <th scope="col">Customer email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @ie_statements.each do |ie_statement| %>
+    <tr>
+      <td><%= ie_statement.id %></td>
+      <td><%= ie_statement.name %></td>
+      <td><%= ie_statement.disposable_income %></td>
+      <td><%= ie_statement.grade %></td>
+      <td><%= ie_statement.ratio %></td>
+      <td><%= ie_statement.user.email %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>

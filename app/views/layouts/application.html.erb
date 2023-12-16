@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CreditRating</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "jquery" %>
+    <%= javascript_importmap_tags %>
+
+  </head>
+  <body>
+  <main>
+    <header>
+      <div class="px-3 py-2 text-bg-dark">
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+              <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+            </a>
+            <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+              <% if user_signed_in? %>
+                <li>
+                  <svg class="bi d-block mx-auto mb-1" width="24" height="24"></svg>
+                  <%= link_to "Home", root_path, class: "nav-link text-white" %>
+                </li>
+                <li>
+                  <svg class="bi d-block mx-auto mb-1" width="24" height="24"></svg>
+                  <%= link_to "I & E Statements", ie_statements_path, class: "nav-link text-white" %>
+                </li>
+                <li>
+                  <svg class="bi d-block mx-auto mb-1" width="24" height="24"></svg>
+                  <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link text-white" %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to "Sign in", new_user_session_path, class: "nav-link text-white" %>
+                </li>
+                <li>
+                  <%= link_to "Sign up", new_user_registration_path, class: "nav-link text-white" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="px-3 py-2 border-bottom mb-3">
+        <div class="container d-flex flex-wrap justify-content-center">
+          <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
+            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
+  </main>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; <%= Date.today.year %> Credit Rating</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+  </body>
+</html>
