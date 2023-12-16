@@ -19,13 +19,16 @@ This is a simple rails app that allows users to track their income and expenditu
 ##  Features
 
 1. User can sign up and login.
+   
 ![login page](images/login.png)
 
 
 2. User can add multiple incomes and expenditures.
+   
    ![form](images/form.png)
 
 3. User can view their IE ratings and disposable income.
+   
    ![income_and exp](images/income_and_exp.png)
 
 
